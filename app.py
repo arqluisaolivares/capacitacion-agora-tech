@@ -26,8 +26,8 @@ ARCHIVOS = {
 version = st.query_params.get("version", "corporativa")
 archivo = ARCHIVOS.get(version, ARCHIVOS["corporativa"])
 
-@st.cache_data
 def leer(nombre: str) -> str:
+    # Sin caché: así cada cambio subido a GitHub se ve de inmediato
     return (Path(__file__).parent / nombre).read_text(encoding="utf-8")
 
 components.html(leer(archivo), height=900, scrolling=True)

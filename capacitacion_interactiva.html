@@ -606,11 +606,13 @@
   .modulo,.bloque,.seccion-titulo,#capacitacion{scroll-margin-top:84px}
   .reales{margin:0 0 20px;border:1px solid var(--linea);border-radius:10px;padding:14px 16px;background:var(--superficie)}
   .reales-t{margin:0 0 10px;font-weight:700;color:var(--navy);font-size:16px}
-  .reales-fila{display:flex;gap:12px;overflow-x:auto;padding-bottom:4px}
-  .reales figure{margin:0;flex:0 0 150px}
-  .reales.anchas figure{flex:0 0 min(420px,85%)}
-  .reales img{display:block;width:100%;height:auto;border-radius:8px;border:1px solid var(--linea);background:#fff}
-  .reales figcaption{font-size:13.5px;color:var(--gris);margin-top:6px;line-height:1.35}
+  .reales-fila{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+  .reales figure{margin:0}
+  .reales.anchas .reales-fila{grid-template-columns:repeat(auto-fill,minmax(420px,1fr))}
+  .reales img{display:block;width:100%;height:480px;object-fit:contain;border-radius:8px;border:1px solid var(--linea);background:#fff;padding:8px;box-sizing:border-box}
+  .reales.anchas img{height:300px}
+  @media (max-width:640px){.reales img{height:420px}.reales.anchas img{height:auto}.reales.anchas .reales-fila{grid-template-columns:1fr}}
+  .reales figcaption{font-size:15px;color:var(--gris);margin-top:6px;line-height:1.35}
   .reales-f{margin:10px 0 0;font-size:12.5px;color:#8A93A0}
   .oficial-marco{background-size:cover;background-position:center}
   .tema-oficial{margin:0 0 20px}
@@ -1077,7 +1079,7 @@ const CURSOS = {
           'Toque la puerta y luego el botón <b>Abrir</b>. Mantenga el celular cerca del lector y quieto.',
           'Espere la confirmación en la pantalla, el pitido y la luz verde. Empuje o hale la puerta: tiene unos segundos antes de que se vuelva a asegurar.'
         ],
-        nota: {tipo:'ojo', titulo:'Lo que más falla', texto:'Alejarse antes de tiempo. Deje el celular quieto frente al lector hasta que la aplicación confirme. Si la aplicación dice <b>Acérquese más a la puerta</b>, es solo eso: dé un paso más.'},
+        nota: {tipo:'ojo', titulo:'Un consejo', texto:'Mantenga el celular quieto frente al lector hasta que la aplicación confirme la apertura. Si aparece el mensaje <b>Acérquese más a la puerta</b>, basta con acercarse un poco más y esperar un momento.'},
         extra: {titulo:'Dos atajos que puede tener', items:[
           '<b>Con Android y NFC:</b> si su celular tiene NFC encendido, basta con desbloquear el teléfono y acercarlo al lector, sin abrir la aplicación. No todos los lectores lo permiten.',
           '<b>Abrir a distancia:</b> si la administración se lo habilitó, puede abrir ciertas puertas por internet aunque no esté cerca. La aplicación le pide confirmar antes de abrir.'
@@ -1100,7 +1102,7 @@ const CURSOS = {
           'Espere el pitido y la luz verde.',
           'Abra la puerta.'
         ],
-        nota: {tipo:'no', titulo:'No haga esto', texto:'No perfore el llavero, no lo pegue con cinta a otra tarjeta y no lo guarde junto a imanes fuertes. Si se daña, la reposición tiene costo para el apartamento.'},
+        nota: {tipo:'no', titulo:'Cuide su llavero', texto:'Le recomendamos no perforarlo, no pegarlo con cinta a otra tarjeta y mantenerlo lejos de imanes fuertes. Si se daña, la reposición tiene un costo para el apartamento.'},
         problemas: [
           {p:'Tengo que acercarlo varias veces.', s:'Retire el llavero del llavero grande de metal o de la billetera con muchas tarjetas: el metal y otras tarjetas interfieren en la lectura.'}
         ]
@@ -1118,7 +1120,7 @@ const CURSOS = {
           'Mientras digita, tape el teclado con la otra mano, como en un cajero.',
           'Si se equivoca, no siga digitando: espere unos segundos y empiece de nuevo desde el principio.'
         ],
-        nota: {tipo:'ojo', titulo:'Si alguien vio su código, pídalo cambiar', texto:'El cambio toma minutos desde la administración y no tiene costo. Es mucho mejor eso que seguir usando un código que ya conoce otra persona.'},
+        nota: {tipo:'ojo', titulo:'Si alguien vio su código, pídalo cambiar', texto:'La administración lo cambia en pocos minutos y sin costo. Así su código vuelve a ser solo suyo.'},
         problemas: [
           {p:'Digité bien y no abre.', s:'Puede que el código se haya cambiado o que esa puerta no esté habilitada para usted. Consulte con la administración.'},
           {p:'Olvidé mi código.', s:'La administración se lo reasigna. Por seguridad no se lo pueden dictar por teléfono sin verificar quién es usted.'},
@@ -1139,7 +1141,7 @@ const CURSOS = {
           'Si la persona sale de vacaciones, use <b>Bloquear</b>; al volver, <b>Desbloquear</b> y recupera el mismo acceso. Si deja de trabajar con usted, cancele su llave.',
           '<b>Si no tiene ese permiso:</b> pida a la administración el acceso con horario para su empleada, cuidador o terapeuta. Los códigos PIN solo los asigna la administración.'
         ],
-        nota: {tipo:'ojo', titulo:'Su llave es suya', texto:'Todo lo que entre con su llave queda registrado como si hubiera entrado usted. Si presta la llave, asume lo que pase con ella.'}
+        nota: {tipo:'ojo', titulo:'Su llave es personal', texto:'Todo lo que entra con su llave queda registrado a su nombre. Por eso le recomendamos no prestarla y pedir un acceso propio para quien lo necesite.'}
       },
       {
         titulo: 'Si pierde el celular, la tarjeta o el llavero',
@@ -1289,7 +1291,7 @@ const CURSOS = {
           'Al terminar la obra, verifique que los accesos quedaron cerrados y los llaveros devueltos.',
           'Puede delegar: si nombra a un residente <b>gestor de su apartamento</b>, él mismo crea los accesos de su empleada o su familia dentro de lo que usted le asignó a ese apartamento. Usted conserva el control de las puertas.'
         ],
-        nota: {tipo:'no', titulo:'Evite esto', texto:'Crear un usuario permanente llamado "obra" o "aseo" que se va prestando entre personas. Cuando pase algo, el registro no sirve para nada porque no identifica a nadie.'}
+        nota: {tipo:'no', titulo:'Le recomendamos evitar', texto:'Crear un usuario permanente llamado "obra" o "aseo" que se presta entre varias personas: si ocurre algo, el registro no permite saber quién entró.'}
       },
       {
         titulo: 'Consulte el registro de entradas',
@@ -1393,7 +1395,7 @@ const CURSOS = {
           'Espere el pitido o el mensaje de bienvenida en la pantalla.',
           'Empuje la puerta. Si no alcanza a pasar, vuelva a presentarse: no hay límite de intentos.'
         ],
-        nota: {tipo:'ojo', titulo:'De noche funciona igual', texto:'El equipo tiene iluminación propia, así que reconoce con poca luz. Lo que sí estorba es la luz muy fuerte por detrás: si el sol le da en la espalda, muévase un poco.'},
+        nota: {tipo:'ojo', titulo:'De noche funciona igual', texto:'El equipo tiene iluminación propia, así que reconoce con poca luz. Lo que sí estorba es la luz muy fuerte por detrás: si el sol le da en la espalda, basta con moverse un poco.'},
         problemas: [
           {p:'No me reconoce desde que me corté el pelo o me dejé la barba.', s:'Pida a la administración que lo registre de nuevo. Es normal y toma un minuto.'},
           {p:'Me reconoce pero no abre.', s:'Es un tema de permisos, no de la cara. Consulte con la administración qué puertas tiene asignadas.'},
@@ -1412,7 +1414,7 @@ const CURSOS = {
           'Empuje la puerta.',
           'Saque la tarjeta de la billetera si lleva muchas otras: el metal y las demás tarjetas interfieren en la lectura.'
         ],
-        nota: {tipo:'no', titulo:'No la preste', texto:'Todo lo que entra con su tarjeta queda registrado como si fuera usted. Para visitas hay un mecanismo propio, explicado más adelante.'},
+        nota: {tipo:'no', titulo:'Su tarjeta es personal', texto:'Todo lo que entra con su tarjeta queda registrado a su nombre. Para las visitas hay otras opciones, que le explicamos más adelante.'},
         problemas: [
           {p:'Tengo que acercarla varias veces.', s:'Sepárela de otras tarjetas y del llavero de metal. Si sigue fallando, pida el reemplazo: las tarjetas se desmagnetizan con el uso.'}
         ]
@@ -1430,7 +1432,7 @@ const CURSOS = {
           'Mientras digita, tape la pantalla con la otra mano, como en un cajero.',
           'Si se equivoca, espere unos segundos y empiece de nuevo.'
         ],
-        nota: {tipo:'ojo', titulo:'Si alguien vio su código, pídalo cambiar', texto:'El cambio es inmediato desde la administración y no tiene costo. Un código que otra persona conoce deja de ser suyo.'},
+        nota: {tipo:'ojo', titulo:'Si alguien vio su código, pídalo cambiar', texto:'La administración lo cambia de inmediato y sin costo. Así su código vuelve a ser solo suyo.'},
         problemas: [
           {p:'Olvidé mi código.', s:'La administración se lo reasigna. Por seguridad no se lo pueden dictar por teléfono sin verificar quién es usted.'},
           {p:'Digité bien y no abre.', s:'Puede que el código se haya cambiado o que esa puerta no esté habilitada para usted. Consulte con la administración.'}
@@ -1449,7 +1451,7 @@ const CURSOS = {
           'Si decide dejarlo entrar, toque el botón de <b>abrir</b>, el que tiene el dibujo de la llave o el candado.',
           'Si no conoce a la persona, no abra. Cuelgue y, si insiste o le parece sospechoso, avise a la administración.'
         ],
-        nota: {tipo:'ojo', titulo:'Estafa frecuente', texto:'Alguien timbra diciendo que es de una empresa de servicios públicos o que trae una encuesta y pide que le abran "un momentico". No abra. Si es real, puede esperar a que usted baje a atenderlo en la entrada.'}
+        nota: {tipo:'ojo', titulo:'Estafa frecuente', texto:'Alguien timbra diciendo que es de una empresa de servicios públicos o que trae una encuesta y pide que le abran "un momentico". Le recomendamos no abrir: si la visita es real, puede esperar a que usted baje a atenderla en la entrada.'}
       },
       {
         titulo: 'Atienda y abra desde el celular',
@@ -1480,7 +1482,7 @@ const CURSOS = {
           'Para quien viene siempre (empleada, cuidador, terapeuta), pida a la administración un registro propio con horario, en vez de prestar su acceso.',
           'Avise a la administración cuando esa persona deje de trabajar con usted, para que le retiren el acceso.'
         ],
-        nota: {tipo:'no', titulo:'No lo haga', texto:'Dejar la puerta trabada para que "entre solo el domicilio". Mientras está trabada, entra cualquiera y el sistema completo queda anulado.'}
+        nota: {tipo:'no', titulo:'Una recomendación', texto:'Evite dejar la puerta trabada para que entre un domicilio: mientras está abierta, cualquier persona puede entrar.'}
       },
       {
         titulo: 'Qué pasa si se va la luz o el internet',
@@ -1587,7 +1589,7 @@ const CURSOS = {
           'Para personal recurrente, use horarios semanales en lugar de accesos permanentes.',
           'Al terminar la obra, confirme que los accesos se cerraron y las tarjetas volvieron.'
         ],
-        nota: {tipo:'no', titulo:'Evite esto', texto:'Un usuario genérico llamado "visitantes" o "contratista" que se presta entre personas. Anula el valor del registro, que es justamente saber quién entró.'}
+        nota: {tipo:'no', titulo:'Le recomendamos evitar', texto:'Un usuario genérico como "visitantes" o "contratista" que se presta entre varias personas: así el registro no permite saber quién entró.'}
       },
       {
         titulo: 'Revise registros y grabaciones',

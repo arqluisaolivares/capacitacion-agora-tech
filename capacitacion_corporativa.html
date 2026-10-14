@@ -946,7 +946,8 @@ const OFICIALES = {
 const DOC_SALTO = 'https://support.saltosystems.com/homelok/user-guide/';
 const REALES = {
   's-llaves':     {u:'keyholder/images/key-list.f0e10103e7e4f6cc3de2e7c6e20227c7806220f3ca4238522de67f8a3079623d.png', p:'Mis llaves: cada puerta con su botón Abrir'},
-  's-abriendo':   {u:'keyholder/images/access-granted.8b5dcb805fba207c6ed695f5ea3293f248c906b0252b16c371b126cda3e9e490.png', p:'Verificando su acceso y luego acceso concedido'},
+  's-verificando':{u:'keyholder/images/access-granted.8b5dcb805fba207c6ed695f5ea3293f248c906b0252b16c371b126cda3e9e490.png', p:'Verificando su acceso', lado:'0%'},
+  's-concedido':  {u:'keyholder/images/access-granted.8b5dcb805fba207c6ed695f5ea3293f248c906b0252b16c371b126cda3e9e490.png', p:'Acceso concedido: puede abrir la puerta', lado:'100%'},
   's-sinacceso':  {u:'keyholder/images/no-access.a857d6ad4db81b9640146134377cb7308749a1457953357ed2dcb0d3256097c2.png', p:'Todavía sin acceso: se resuelve con la administración'},
   's-remoto':     {u:'keyholder/images/remote-unlock-confirmation.3c720dae00222142bc056a664a57cbc90225e876ea5d9449bec8898f63a5f6b9.png', p:'Confirmación antes de abrir a distancia'},
   's-usuarios':   {u:'unit-manager/images/unit-user-list.4aaded359a79e88bfa654689137262f919d784476e42a23ce2e39a1eb274fdcc.png', p:'Usuarios de su apartamento y botón +'},
@@ -965,7 +966,7 @@ function realesHTML(lista){
   const ancho = items.some(x => x.ancho);
   return '<div class="reales' + (ancho ? ' anchas' : '') + '">' +
     '<p class="reales-t">Así se ve en la aplicación real</p><div class="reales-fila">' +
-    items.map(x => '<figure><img src="' + DOC_SALTO + x.u + '" alt="' + x.p + '" loading="lazy" referrerpolicy="no-referrer" ' +
+    items.map(x => '<figure><img src="' + DOC_SALTO + x.u + '" alt="' + x.p + '" loading="lazy" referrerpolicy="no-referrer" ' + (x.lado ? 'style="object-fit:cover;object-position:' + x.lado + ' 50%;padding:0" ' : '') +
       'onerror="var f=this.closest(\'figure\'),r=f.closest(\'.reales\');f.remove();if(!r.querySelector(\'figure\'))r.remove();">' +
       '<figcaption>' + x.p + '</figcaption></figure>').join('') +
     '</div><p class="reales-f">Pantallas reales tomadas de la guía oficial de SALTO Systems. En su celular aparecen en español.</p></div>';
@@ -1011,7 +1012,7 @@ const CURSOS = {
       },
       {
         titulo: 'Abra la puerta con el celular',
-        reales: ['s-llaves','s-abriendo','s-remoto'],
+        reales: ['s-llaves','s-verificando','s-concedido','s-remoto'],
         oficial: '6RFLdlymADc',
         video: 'demo-salto-celular',
         clave: 'Bluetooth encendido, toque <b>Abrir</b> y deje el celular quieto cerca de la puerta.',
@@ -1118,7 +1119,7 @@ const CURSOS = {
       },
       {
         titulo: 'Lo que le dice la aplicación',
-        reales: ['s-sinacceso','s-abriendo'],
+        reales: ['s-sinacceso','s-concedido'],
         clave: 'Casi todos los mensajes de error se resuelven acercándose o hablando con la administración.',
         resumen: 'Los avisos más comunes y qué hacer con cada uno.',
         figura: {clave:'salto-app', pie:'Los textos pueden variar un poco según la versión de la aplicación y el idioma del celular.'},

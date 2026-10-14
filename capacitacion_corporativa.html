@@ -567,6 +567,17 @@
   .aviso.ver{opacity:1;transform:translate(-50%,0)}
   .confeti{position:fixed;inset:0;pointer-events:none;z-index:80}
   .modulo,.bloque,.seccion-titulo,#capacitacion{scroll-margin-top:84px}
+  .reales{margin:0 0 20px;border:1px solid var(--linea);border-radius:10px;padding:14px 16px;background:var(--superficie)}
+  .reales-t{margin:0 0 10px;font-weight:700;color:var(--navy);font-size:16px}
+  .reales-fila{display:flex;gap:12px;overflow-x:auto;padding-bottom:4px}
+  .reales figure{margin:0;flex:0 0 150px}
+  .reales.anchas figure{flex:0 0 min(420px,85%)}
+  .reales img{display:block;width:100%;height:auto;border-radius:8px;border:1px solid var(--linea);background:#fff}
+  .reales figcaption{font-size:13.5px;color:var(--gris);margin-top:6px;line-height:1.35}
+  .reales-f{margin:10px 0 0;font-size:12.5px;color:#8A93A0}
+  .oficial-marco{background-size:cover;background-position:center}
+  .tema-oficial{margin:0 0 20px}
+  @media print{.reales,.tema-oficial{display:none!important}}
   @media (max-width:640px){
     .seleccion .contenedor{flex-wrap:nowrap;padding-top:9px;padding-bottom:9px}
     .seleccion .quien{font-size:14.5px}
@@ -935,9 +946,55 @@ const TITULOS_VIDEO = {
 
 /* Video oficial del fabricante (se carga solo si hay internet y la persona lo pide) */
 const OFICIALES = {
-  salto: [{id:'XooP303VLqU', titulo:'SALTO Homelok: cómo funciona en un edificio residencial', nota:'Video oficial de SALTO, 1 minuto. Está en inglés, pero se entiende con las imágenes.'}],
-  hikvision: []
+  salto: [
+    {id:'6RFLdlymADc', titulo:'La llave digital en la app Salto Homelok', nota:'Video oficial de SALTO, 45 segundos. Muestra la aplicación real abriendo puertas.'},
+    {id:'XooP303VLqU', titulo:'SALTO Homelok en un edificio residencial', nota:'Video oficial de SALTO, 1 minuto. Muestra lectores, cerraduras y la app en uso.'}
+  ],
+  hikvision: [
+    {id:'ck41V_DFYnQ', titulo:'Terminales de reconocimiento facial HikVision', nota:'Video oficial de HikVision, 1 minuto y medio. Muestra cómo se usan los equipos en diferentes entradas.'}
+  ]
 };
+
+/* ==========================================================
+   PANTALLAS REALES (guía oficial de SALTO Systems)
+   Se cargan desde internet. Si no hay conexión, no aparecen
+   y la capacitación sigue igual con sus imágenes propias.
+   ========================================================== */
+const DOC_SALTO = 'https://support.saltosystems.com/homelok/user-guide/';
+const REALES = {
+  's-llaves':     {u:'keyholder/images/key-list.f0e10103e7e4f6cc3de2e7c6e20227c7806220f3ca4238522de67f8a3079623d.png', p:'Mis llaves: cada puerta con su botón Abrir'},
+  's-abriendo':   {u:'keyholder/images/access-granted.8b5dcb805fba207c6ed695f5ea3293f248c906b0252b16c371b126cda3e9e490.png', p:'Verificando su acceso y luego acceso concedido'},
+  's-sinacceso':  {u:'keyholder/images/no-access.a857d6ad4db81b9640146134377cb7308749a1457953357ed2dcb0d3256097c2.png', p:'Todavía sin acceso: se resuelve con la administración'},
+  's-remoto':     {u:'keyholder/images/remote-unlock-confirmation.3c720dae00222142bc056a664a57cbc90225e876ea5d9449bec8898f63a5f6b9.png', p:'Confirmación antes de abrir a distancia'},
+  's-usuarios':   {u:'unit-manager/images/unit-user-list.4aaded359a79e88bfa654689137262f919d784476e42a23ce2e39a1eb274fdcc.png', p:'Usuarios de su apartamento y botón +'},
+  's-crear':      {u:'unit-manager/images/user-details.edd6fbc41baed1b9d732c4c7be6dc1649726ff8f6a19dec14d1820782bcf0618.png', p:'Crear usuario: nombre, correo y vigencia'},
+  's-horario':    {u:'unit-manager/images/access-schedule.2007c4f0ea0f5bdc418f499316ae7675d0c4a01ebad9924892d9c3d3cdd08bc6.png', p:'Horario: días y horas permitidos'},
+  's-tipos':      {u:'unit-manager/images/key-types.238078300e62db3150d0909d9d39a73e22f37299818c2a491b8d279715e8f254.png', p:'Asignar la llave en la app'},
+  'a-invitar':    {u:'property-manager/users/images/invite-user.7a4d1bcbecbe8ad0141c70c5f5053fd6b89f5e05ee8d91df2b006492d69af54a.png', p:'Plataforma web: crear un usuario', ancho:true},
+  'a-llave':      {u:'property-manager/users/images/assign-app-key.c88f9611988ad96c677f8391fb11b00c40b963cd9d2dbfdfab995d847b504de6.png', p:'Plataforma web: asignar la llave en la app', ancho:true},
+  'a-bloquear':   {u:'property-manager/users/images/block-user.a1ee3b8f616711991d566128262391137beb370e340b584ab7dd838cd043bf84.png', p:'Plataforma web: bloquear a un usuario', ancho:true}
+};
+
+function realesHTML(lista){
+  if(!lista || !lista.length) return '';
+  const items = lista.map(k => REALES[k]).filter(Boolean);
+  if(!items.length) return '';
+  const ancho = items.some(x => x.ancho);
+  return '<div class="reales' + (ancho ? ' anchas' : '') + '">' +
+    '<p class="reales-t">Así se ve en la aplicación real</p><div class="reales-fila">' +
+    items.map(x => '<figure><img src="' + DOC_SALTO + x.u + '" alt="' + x.p + '" loading="lazy" referrerpolicy="no-referrer" ' +
+      'onerror="var f=this.closest(\'figure\'),r=f.closest(\'.reales\');f.remove();if(!r.querySelector(\'figure\'))r.remove();">' +
+      '<figcaption>' + x.p + '</figcaption></figure>').join('') +
+    '</div><p class="reales-f">Pantallas reales tomadas de la guía oficial de SALTO Systems. En su celular aparecen en español.</p></div>';
+}
+
+/* Video oficial dentro de un tema (se carga solo al tocarlo, necesita internet) */
+function oficialTemaHTML(o){
+  if(!o) return '';
+  return '<div class="oficial tema-oficial"><div class="oficial-marco" data-yt="' + o.id + '" style="background-image:url(https://i.ytimg.com/vi/' + o.id + '/hqdefault.jpg)">' +
+    '<button type="button" class="boton">Ver video oficial</button></div>' +
+    '<div><b>' + o.titulo + '</b><p>' + o.nota + ' Necesita conexión a internet.</p></div></div>';
+}
 
 const CURSOS = {
   'residente-salto': {
@@ -949,6 +1006,7 @@ const CURSOS = {
     modulos: [
       {
         titulo: 'Active su llave en el celular',
+        reales: ['s-llaves','s-sinacceso'],
         video: 'demo-salto-activar',
         clave: 'Instale <b>Salto Homelok</b> y entre con el mismo correo de la invitación.',
         resumen: 'Se hace una sola vez, con el correo que le envía la administración.',
@@ -970,6 +1028,8 @@ const CURSOS = {
       },
       {
         titulo: 'Abra la puerta con el celular',
+        reales: ['s-llaves','s-abriendo','s-remoto'],
+        oficial: '6RFLdlymADc',
         video: 'demo-salto-celular',
         clave: 'Bluetooth encendido, toque <b>Abrir</b> y deje el celular quieto cerca de la puerta.',
         resumen: 'Es el uso de todos los días. Toma menos de tres segundos.',
@@ -1030,6 +1090,7 @@ const CURSOS = {
       },
       {
         titulo: 'Visitas, domicilios y acceso para su empleada o su familia',
+        reales: ['s-usuarios','s-crear','s-horario','s-tipos'],
         video: 'demo-salto-compartir',
         clave: 'Nunca preste su llave: cada persona que entra seguido debe tener la suya, con su horario.',
         resumen: 'Cada edificio define su regla. Estas son las formas posibles.',
@@ -1074,6 +1135,7 @@ const CURSOS = {
       },
       {
         titulo: 'Lo que le dice la aplicación',
+        reales: ['s-sinacceso','s-abriendo'],
         clave: 'Casi todos los mensajes de error se resuelven acercándose o hablando con la administración.',
         resumen: 'Los avisos más comunes y qué hacer con cada uno.',
         figura: {clave:'salto-app', pie:'Los textos pueden variar un poco según la versión de la aplicación y el idioma del celular.'},
@@ -1142,6 +1204,7 @@ const CURSOS = {
       },
       {
         titulo: 'Dé de alta a un residente nuevo',
+        reales: ['a-invitar','a-llave'],
         video: 'demo-salto-alta',
         clave: 'Autorización de datos, usuario, solo sus puertas, dos formas de entrar, invitación.',
         resumen: 'La tarea más frecuente. Toma dos minutos por persona.',
@@ -1163,6 +1226,7 @@ const CURSOS = {
       },
       {
         titulo: 'Quite el acceso de quien se va',
+        reales: ['a-bloquear'],
         video: 'demo-salto-baja',
         clave: 'El mismo día de la entrega: desactivar, recuperar llaveros y revisar temporales.',
         resumen: 'El paso que más se olvida y el que más riesgo genera.',
@@ -1281,6 +1345,7 @@ const CURSOS = {
       },
       {
         titulo: 'Entre con reconocimiento facial',
+        oficial: 'ck41V_DFYnQ',
         video: 'demo-hik-facial',
         clave: 'A un paso, de frente, y espere el pitido. No hay límite de intentos.',
         resumen: 'El uso diario. No tiene que tocar nada.',
@@ -1725,6 +1790,8 @@ function construir(curso){
            '<p>' + (vs.length > 1 ? (k === 0 ? 'Cómo se hace: ' : 'Además: ') : '') + '<b>' + (TITULOS_VIDEO[v] || '') + '</b> · video sin sonido, toque para reproducir.</p></div>';
     });
     h += figuraHTML(m.figura);
+    h += realesHTML(m.reales);
+    if(m.oficial) h += oficialTemaHTML((OFICIALES[estado.sistema] || []).find(o => o.id === m.oficial));
     if(m.tabla){
       h += '<div class="tabla-msj" role="table">' +
         '<div class="fila enc" role="row"><span role="columnheader">Si ve…</span><span role="columnheader">Significa</span><span role="columnheader">Qué hacer</span></div>' +
@@ -1767,7 +1834,7 @@ function construir(curso){
     }
   }
   (OFICIALES[sis] || []).forEach(o => {
-    h += '<div class="oficial"><div class="oficial-marco" data-yt="' + o.id + '">' +
+    h += '<div class="oficial"><div class="oficial-marco" data-yt="' + o.id + '" style="background-image:url(https://i.ytimg.com/vi/' + o.id + '/hqdefault.jpg)">' +
          '<button type="button" class="boton secundario">Ver video oficial</button></div>' +
          '<div><b>' + o.titulo + '</b><p>' + o.nota + ' Necesita conexión a internet.</p></div></div>';
   });

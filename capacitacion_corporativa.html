@@ -620,27 +620,7 @@
     <div class="hero">
       <span class="etiqueta">Ágora Tech · Capacitación de usuarios</span>
       <h1>Capacitación del sistema de control de acceso</h1>
-      <p class="entrada">Guía de uso del sistema de control de acceso para residentes y administraciones. Se consulta desde el celular o el computador e incluye videos de demostración de cada procedimiento.</p>
-      <div class="hero-fila">
-        <svg class="puerta" viewBox="0 0 340 230" role="img" aria-label="Ilustración de una puerta con lector de acceso">
-      <rect x="0" y="0" width="340" height="230" fill="#F4F6F9" rx="12"/>
-      <rect x="70" y="26" width="150" height="182" rx="6" fill="#FFFFFF" stroke="#12284C" stroke-width="3"/>
-      <rect x="86" y="44" width="118" height="70" rx="4" fill="#E9EEF5" stroke="#12284C" stroke-width="2"/>
-      <rect x="86" y="128" width="118" height="62" rx="4" fill="#E9EEF5" stroke="#12284C" stroke-width="2"/>
-      <circle cx="196" cy="122" r="6" fill="#12284C"/>
-      <rect x="244" y="86" width="44" height="62" rx="8" fill="#FFFFFF" stroke="#12284C" stroke-width="3"/>
-      <circle cx="266" cy="110" r="11" fill="none" stroke="#1F8A5A" stroke-width="3"/>
-      <circle cx="266" cy="110" r="4" fill="#1F8A5A"/>
-      <rect x="258" y="130" width="16" height="4" rx="2" fill="#12284C"/>
-      <path d="M232 110 h-14 M228 100 h-10 M228 120 h-10" stroke="#1F8A5A" stroke-width="3" stroke-linecap="round"/>
-      <rect x="0" y="208" width="340" height="22" fill="#E3E8EF" rx="0"/>
-    </svg>
-        <ul class="aprendera">
-          <li><span>1</span>Entrar con celular, tarjeta, código o la cara</li>
-          <li><span>2</span>Manejar visitas, domicilios y empleados</li>
-          <li><span>3</span>Resolver los problemas más comunes</li>
-        </ul>
-      </div>
+      <p class="entrada">Elija su perfil y el sistema de su edificio para empezar.</p>
     </div>
   </section>
 
@@ -736,7 +716,6 @@
 <footer class="pie">
   <div class="contenedor">
     <p>Ágora Tech S.A.S. — Automatización de control de acceso para propiedad horizontal.</p>
-    <p>Material de capacitación para residentes y administraciones. Guarde este enlace: puede consultarlo cuando quiera.</p>
   </div>
 </footer>
 
@@ -1763,25 +1742,18 @@ function construir(curso){
 
   /* --- Bienvenida del curso --- */
   h += '<div class="intro-curso">' +
-       '<h2>' + curso.titulo + '</h2>' + curso.intro.map(p => '<p>' + p + '</p>').join('') +
+       '<h2>' + curso.titulo + '</h2>' + '<p>' + curso.intro[0] + '</p>' +
        '</div>';
 
   /* --- Avance y mapa de temas --- */
   h += '<div class="avance"><span id="avanceTexto"></span>' +
        '<span class="riel"><span class="lleno" id="avanceLleno"></span></span></div>';
-  h += '<nav class="mapa" aria-label="Temas de esta capacitación">' +
-       curso.modulos.map((m,i) => '<a href="#tema-' + (i+1) + '" data-ir="' + i + '"><span class="n">' + (i+1) + '</span><span class="t">' + m.titulo + '</span></a>').join('') +
-       '</nav>';
-
-  h += '<h2 class="seccion-titulo" id="temas">Los temas, uno por uno</h2>' +
-       '<p class="seccion-ayuda">Seleccione un tema para desplegarlo. Al finalizar, márquelo como visto para continuar con el siguiente.</p>';
-
   curso.modulos.forEach((m, i) => {
     const hecho = avance.hechos.indexOf(i) > -1;
     h += '<article class="modulo' + (hecho ? ' hecho' : '') + '" id="tema-' + (i+1) + '">' +
       '<button class="cabeza" type="button" aria-expanded="false" data-tema="' + i + '">' +
         '<span class="numero">' + (i+1) + '</span>' +
-        '<span class="cab-texto"><span class="h3">' + m.titulo + '</span><span class="resumen">' + m.resumen + '</span></span>' +
+        '<span class="cab-texto"><span class="h3">' + m.titulo + '</span></span>' +
         '<span class="estado-tema" aria-hidden="true"></span>' +
       '</button>' +
       '<div class="cuerpo" hidden>';
@@ -1789,9 +1761,9 @@ function construir(curso){
     const vs = listaVideos(m);
     vs.forEach((v, k) => {
       h += '<div class="video-demo"><video controls loop muted playsinline preload="none" poster="' + (MINIS[v] || '') + '" src="' + VIDEOS[v] + '"></video>' +
-           '<p>' + (vs.length > 1 ? (k === 0 ? 'Cómo se hace: ' : 'Además: ') : '') + '<b>' + (TITULOS_VIDEO[v] || '') + '</b> · video sin sonido, toque para reproducir.</p></div>';
+           '</div>';
     });
-    h += figuraHTML(m.figura);
+    if(!vs.length) h += figuraHTML(m.figura);
     h += realesHTML(m.reales);
     if(m.oficial) h += oficialTemaHTML((OFICIALES[estado.sistema] || []).find(o => o.id === m.oficial));
     if(m.tabla){
@@ -1817,30 +1789,17 @@ function construir(curso){
     h += '</div></article>';
   });
 
-  /* --- Videoteca --- */
-  h += '<section class="bloque" id="videoteca"><h2 class="seccion-titulo">Videoteca</h2>' +
-       '<p class="seccion-ayuda">Toque un video para verlo.</p>' +
-       '<div class="galeria">' +
-       vids.map(x => '<button type="button" class="mini" data-video="' + x.v + '">' +
-         '<img src="' + (MINIS[x.v] || '') + '" alt="" loading="lazy"><span class="play" aria-hidden="true"></span>' +
-         '<span class="mini-t">' + (TITULOS_VIDEO[x.v] || '') + '</span><span class="mini-s">Tema ' + (x.tema + 1) + '</span></button>').join('') +
-       '</div>';
+  /* --- Videos para compartir (solo administración) --- */
   if(estado.rol === 'admin'){
     const res = CURSOS['residente-' + sis];
     const extra = res ? videosDelCurso(res).filter(x => vids.every(y => y.v !== x.v)) : [];
     if(extra.length){
-      h += '<h3 class="galeria-sub">Para compartir con sus residentes</h3><div class="galeria">' +
+      h += '<section class="bloque" id="videoteca"><h2 class="seccion-titulo">Videos para compartir con los residentes</h2><div class="galeria">' +
         extra.map(x => '<button type="button" class="mini" data-video="' + x.v + '">' +
           '<img src="' + (MINIS[x.v] || '') + '" alt="" loading="lazy"><span class="play" aria-hidden="true"></span>' +
-          '<span class="mini-t">' + (TITULOS_VIDEO[x.v] || '') + '</span><span class="mini-s">Capacitación de residentes</span></button>').join('') + '</div>';
+          '<span class="mini-t">' + (TITULOS_VIDEO[x.v] || '') + '</span></button>').join('') + '</div></section>';
     }
   }
-  (OFICIALES[sis] || []).forEach(o => {
-    h += '<div class="oficial"><div class="oficial-marco" data-yt="' + o.id + '" style="background-image:url(https://i.ytimg.com/vi/' + o.id + '/hqdefault.jpg)">' +
-         '<button type="button" class="boton secundario">Ver video oficial</button></div>' +
-         '<div><b>' + o.titulo + '</b><p>' + o.nota + ' Necesita conexión a internet.</p></div></div>';
-  });
-  h += '</section>';
 
   /* --- Evaluación --- */
   h += '<section class="evaluacion bloque" id="prueba"><h2>Compruebe lo aprendido</h2>' +
@@ -1853,24 +1812,6 @@ function construir(curso){
   });
   h += '<div class="resultado" id="resultadoPrueba" hidden></div></section>';
 
-  /* --- Glosario --- */
-  const glos = GLOSARIO[sis] || [];
-  if(glos.length){
-    h += '<details class="bloque glosario"><summary>Glosario</summary><dl>' +
-         glos.map(g => '<div><dt>' + g[0] + '</dt><dd>' + g[1] + '</dd></div>').join('') + '</dl></details>';
-  }
-
-  /* --- Resumen para compartir --- */
-  h += '<section class="bloque resumen-bolsillo"><h2 class="seccion-titulo">Resumen</h2>' +
-       '<p class="seccion-ayuda">Lo esencial de cada tema en una línea, para compartir con su familia, su personal o los residentes.</p>' +
-       '<ol>' + curso.modulos.filter(m => m.clave).map(m => '<li><b>' + m.titulo + ':</b> ' + m.clave + '</li>').join('') + '</ol>' +
-       '<div class="acciones-cert"><a class="boton" id="btnWhats" target="_blank" rel="noopener">Enviar por WhatsApp</a>' +
-       '<button type="button" class="boton secundario" id="btnCopiar">Copiar el texto</button></div></section>';
-
-  h += '<section class="cierre-duda"><h2>¿Le quedó alguna duda?</h2>' +
-    '<p>Escriba su pregunta y busco entre las dudas más frecuentes de residentes y administraciones.</p>' +
-    '<button type="button" class="boton" onclick="abrirAsistente()">Resolver una duda</button></section>';
-
   h += '<section class="soporte"><h2>Si algo no funciona</h2>' +
     '<p>El primer contacto siempre es la administración de su edificio. Si el problema es del sistema, la administración nos reporta a nosotros.</p>' +
     '<div class="datos">' +
@@ -1881,7 +1822,6 @@ function construir(curso){
   h += '<div class="acciones">' +
     '<button type="button" class="boton" onclick="imprimirGuia()">Imprimir esta guía</button>' +
     '<button type="button" class="boton secundario" id="btnOtra">Ver otra capacitación</button>' +
-    '<button type="button" class="boton secundario" id="btnReiniciar">Empezar de cero</button>' +
     '</div>';
 
   return h;
@@ -1935,7 +1875,7 @@ function activarInteracciones(curso){
     if(i < total - 1){ abrirTema(i + 1, true); }
     else {
       if(avance.hechos.length === total) aviso('Completó todos los temas.');
-      zona.querySelector('#videoteca').scrollIntoView({block:'start', behavior:'smooth'});
+      const sig = zona.querySelector('#prueba'); if(sig) sig.scrollIntoView({block:'start', behavior:'smooth'});
     }
   }));
 
@@ -1988,23 +1928,8 @@ function activarInteracciones(curso){
   })));
   pintarPrueba();
 
-  /* Resumen de bolsillo */
-  const texto = 'Capacitación ' + curso.titulo + ' — lo esencial:\n' +
-    curso.modulos.filter(m => m.clave).map((m, i) => (i+1) + '. ' + m.titulo + ': ' + m.clave.replace(/<[^>]+>/g,'')).join('\n');
-  zona.querySelector('#btnWhats').href = 'https://wa.me/?text=' + encodeURIComponent(texto);
-  zona.querySelector('#btnCopiar').addEventListener('click', () => {
-    (navigator.clipboard ? navigator.clipboard.writeText(texto) : Promise.reject())
-      .then(() => aviso('Texto copiado. Péguelo donde quiera.'))
-      .catch(() => aviso('No se pudo copiar automáticamente.'));
-  });
-
   const otra = zona.querySelector('#btnOtra');
   if(otra) otra.addEventListener('click', () => $('#btnCambiar').click());
-  zona.querySelector('#btnReiniciar').addEventListener('click', () => {
-    if(!confirm('¿Borrar su avance de esta capacitación y empezar de cero?')) return;
-    try { localStorage.removeItem('agora-cap-' + claveCurso()); } catch(e){}
-    intentarRender();
-  });
 }
 
 /* ---------- Reproductor de la videoteca ---------- */

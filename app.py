@@ -1,7 +1,7 @@
 """Capacitación virtual Ágora Tech — sistemas SALTO y HikVision.
 
 Muestra la capacitación (archivo HTML autocontenido) dentro de Streamlit.
-Versión por defecto: corporativa. Para la versión interactiva use ?version=interactiva
+Se publica únicamente la versión corporativa (sin juegos).
 """
 from pathlib import Path
 import streamlit as st
@@ -19,12 +19,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-ARCHIVOS = {
-    "corporativa": "capacitacion_corporativa.html",
-    "interactiva": "capacitacion_interactiva.html",
-}
-version = st.query_params.get("version", "corporativa")
-archivo = ARCHIVOS.get(version, ARCHIVOS["corporativa"])
+archivo = "capacitacion_corporativa.html"
 
 def leer(nombre: str) -> str:
     # Sin caché: así cada cambio subido a GitHub se ve de inmediato

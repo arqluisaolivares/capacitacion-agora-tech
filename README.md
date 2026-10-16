@@ -5,15 +5,14 @@ Capacitación de uso del sistema de control de acceso para residentes y administ
 | Archivo | Uso |
 |---|---|
 | `capacitacion_corporativa.html` | Versión corporativa (la que se envía a los edificios) |
-| `capacitacion_interactiva.html` | Versión con juego, mitos y certificado |
+| `capacitacion_interactiva.html` | Versión con juegos (archivada, no se publica) |
 | `app.py` | Publica la capacitación en Streamlit |
 
 Cada HTML es un archivo único: fotos y videos van incrustados. También se puede abrir directamente en el navegador o enviar por correo.
 
 ## En Streamlit
 
-- Versión corporativa: `https://<su-app>.streamlit.app`
-- Versión interactiva: `https://<su-app>.streamlit.app/?version=interactiva`
+- Se publica solo la versión corporativa: `https://capacitacion-agoratech.streamlit.app`
 
 ## Antes de enviarla a un edificio
 

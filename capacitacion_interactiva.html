@@ -1315,8 +1315,8 @@ const CURSOS = {
       {q:'Acerco el celular y no pasa nada. ¿Qué reviso?', r:'Que el Bluetooth y la ubicación estén encendidos y que la aplicación esté abierta. El ahorro de batería a veces la cierra sola.'},
       {q:'Llega un domicilio y no puedo bajar. ¿Qué hago?', r:'Acuerde la entrega para cuando pueda recibirla. Si tiene la aplicación del citófono (XS4 Com), puede ver a la persona en la videollamada y abrirle desde el celular. Le recomendamos no prestar su llave ni dejar la puerta trabada.'},
       {q:'Salí sin celular y sin tarjeta. ¿Puedo entrar?', r:'Sí, con su código PIN en el teclado de la lectora, si se lo asignaron. Por eso es bueno tener más de una forma de entrar.'},
-      {q:'La aplicación dice "Fuera de alcance". ¿Qué significa?', r:'Que el celular todavía no detecta esa puerta. Acérquese un poco y espere un momento.'},
-      {q:'Una persona me apoya en casa entre semana. ¿Cómo entra?', r:'Pida un acceso a su nombre, con sus días y su horario. Así no tiene que prestarle su llave y el acceso se puede bloquear cuando usted lo necesite.'},
+      {q:'¿Puedo abrir la puerta si no estoy en el edificio?', r:'Solo si la administración le habilitó abrir a distancia en Salto Homelok, o si su edificio tiene citófono y usted tiene la aplicación XS4 Com.'},
+      {q:'¿Mis vecinos pueden ver a qué hora entro o salgo?', r:'No. Cada gestor ve solo la actividad de su apartamento, y el registro completo solo lo consulta la administración.'},
       {q:'Cambié de celular. ¿Pierdo la llave?', r:'No. Instale Salto Homelok en el celular nuevo y entre con el mismo correo. Si la llave no aparece, pida a la administración que se la envíe de nuevo.'}
     ]
   },
@@ -1640,7 +1640,7 @@ const CURSOS = {
         resumen: 'Domicilios, visitas de un día, huéspedes y personal frecuente.',
         figura: {clave:'hik-app', pie:'Los accesos de visitante tienen fecha y hora de vencimiento.'},
         pasos: [
-          '<b>Cuando timbran:</b> mire y hable con la persona desde el monitor o el celular, y abra solo si la reconoce.',
+          '<b>Cuando timbran:</b> atienda como se explica en los temas 5 y 6, desde el monitor o desde el celular.',
           '<b>Domicilios:</b> lo más seguro es bajar a recibirlos en la entrada.',
           '<b>Visita de uno o varios días:</b> si su edificio habilitó la opción de visitantes en la aplicación, cree el visitante con su nombre, el día y las horas en que puede entrar.',
           'Comparta el <b>código QR</b> con su visita por WhatsApp. Al llegar, la persona lo muestra frente al equipo de la entrada y la puerta se abre. El código se vence solo.',
@@ -1652,6 +1652,20 @@ const CURSOS = {
           {p:'El código QR no abre.', s:'Revise que la visita llegue dentro del día y las horas que usted definió, y que suba el brillo de la pantalla al mostrar el código.'}
         ],
         nota: {tipo:'no', titulo:'Una recomendación', texto:'Evite dejar la puerta trabada para que entre un domicilio: mientras está abierta, cualquier persona puede entrar.'}
+      },
+      {
+        titulo: 'Si pierde la tarjeta, alguien ve su código o cambia de celular',
+        donde: 'Avise a la administración. Ella hace el cambio desde la plataforma de administración de HikVision.',
+        clave: 'Avise el mismo día. Se anula solo lo que se perdió y lo demás sigue funcionando.',
+        resumen: 'Lo único urgente es avisar.',
+        pasos: [
+          '<b>Perdió la tarjeta:</b> avise a la administración el mismo día. La anulan y le entregan una nueva. Su rostro y su código siguen funcionando.',
+          'Si aparece la tarjeta perdida después de anularla, ya no sirve: devuélvala a la administración.',
+          '<b>Alguien vio su código:</b> pida que se lo cambien. Es rápido y no tiene costo.',
+          '<b>Cambió de celular:</b> instale de nuevo la aplicación y entre con su misma cuenta. Si no le aparece el edificio, pida a la administración que la vuelva a vincular.',
+          '<b>Cambió mucho su apariencia</b> y el equipo ya no lo reconoce: pida que lo registren de nuevo.'
+        ],
+        nota: {tipo:'ojo', titulo:'Ventaja frente a la llave de metal', texto:'No hay que cambiar ninguna cerradura. Se anula solo esa tarjeta o ese código y los demás residentes no notan nada.'}
       },
       {
         titulo: 'Qué pasa si se va la luz o el internet',
@@ -1676,19 +1690,19 @@ const CURSOS = {
           'No deje entrar a nadie detrás de usted sin que se identifique en la puerta.',
           'No trabe la puerta ni la deje entreabierta, ni por un minuto.',
           'No preste su tarjeta ni su código, ni siquiera a un familiar de visita: pida un acceso a nombre de esa persona.',
-          'No abra a quien no reconozca en la pantalla, aunque insista.',
+          'Si alguien se muda de su apartamento, avise a la administración para que le retiren el acceso.',
           'Avise apenas note algo raro: una cámara girada, una puerta que no cierra o un equipo con la pantalla apagada.'
         ]
       }
     ],
     preguntas: [
-      {q:'El equipo dejó de reconocerme después de un cambio de apariencia.', r:'Pida a la administración que lo registre de nuevo. Toma un minuto y no tiene costo.'},
+      {q:'Perdí mi tarjeta. ¿Qué hago?', r:'Avise a la administración el mismo día. La anulan y le entregan otra; su rostro y su código siguen funcionando.'},
       {q:'Timbran diciendo que vienen a revisar el gas y yo no pedí nada. ¿Abro?', r:'Le recomendamos no abrir. Es un engaño frecuente. Si la persona insiste, avise a la administración.'},
-      {q:'¿Puedo entrar si se va la luz?', r:'Sí. El sistema tiene batería de respaldo y las puertas siguen funcionando.'},
+      {q:'¿Puedo entrar si se va la luz o el internet?', r:'Sí. El sistema tiene batería de respaldo, y sin internet la puerta sigue abriendo. Lo único que se pierde sin internet es el aviso al celular.'},
       {q:'Llega un domicilio y estoy en el trabajo. ¿Qué hago?', r:'Atiéndalo por la aplicación o acuerde la entrega para cuando esté. Le recomendamos no dar su clave ni dejar la puerta trabada.'},
-      {q:'Llego con las manos llenas y el equipo no me lee el rostro.', r:'Use su tarjeta o su código. Para eso están.'},
-      {q:'Alguien que no conozco entra detrás de mí. ¿Qué hago?', r:'Pídale con amabilidad que se identifique en el equipo. Si no lo hace, avise a la administración.'},
-      {q:'No me llegan al celular las llamadas del timbre.', r:'Revise que la aplicación tenga las notificaciones activas, que el ahorro de batería no la esté cerrando y que el celular tenga internet.'}
+      {q:'¿Mis vecinos pueden ver a qué hora entro o salgo?', r:'No. El registro de ingresos solo lo consulta la administración, y solo lo entrega a quien tiene facultad para pedirlo.'},
+      {q:'La pantalla del equipo de la entrada está apagada.', r:'Entre con su tarjeta o su código si el equipo responde, y avise a la administración ese mismo día.'},
+      {q:'¿Puedo tener más de una forma de entrar?', r:'Sí, y se lo recomendamos: por ejemplo, rostro y tarjeta. Si una falla, la otra le sirve.'}
     ]
   },
 
@@ -1707,11 +1721,11 @@ const CURSOS = {
         figura: {clave:'hik-portal', pie:'Pantalla principal: usuarios registrados, puertas y acceso a las grabaciones.'},
         pasos: [
           'Entre con el usuario y la contraseña entregados por Ágora Tech en la puesta en marcha.',
-          'Cambie la contraseña la primera vez y guárdela en un lugar seguro de la administración.',
+          'Cambie la contraseña la primera vez. No deje la contraseña de fábrica ni la anote a la vista: guárdela en un lugar seguro de la administración.',
           'Reconozca las secciones que usará: <b>personas</b>, <b>puertas y permisos</b>, <b>registro de ingresos</b> y <b>cámaras</b>.',
           'Si cambia el administrador, solicite un usuario nuevo y la desactivación del anterior. No se comparte la cuenta.'
         ],
-        nota: {tipo:'ojo', titulo:'Contraseñas', texto:'No deje la contraseña de fábrica ni una contraseña anotada a la vista. Es el punto por donde se compromete cualquier sistema de seguridad.'}
+        nota: {tipo:'ojo', titulo:'Una cuenta por persona', texto:'Cada persona que administre debe tener su propio usuario. Así el registro muestra quién hizo cada cambio, que es lo que le pedirá el consejo si algo se cuestiona.'}
       },
       {
         titulo: 'Registre a un residente',
@@ -1747,6 +1761,11 @@ const CURSOS = {
           'Elimine o archive los datos biométricos según la política de datos de la copropiedad.',
           'Revise que no queden códigos temporales activos a nombre de ese apartamento.',
           'Una vez al mes, compare la lista de personas registradas con la lista real de residentes.'
+        ],
+        problemas: [
+          {p:'Un residente perdió su tarjeta.', s:'Anule esa tarjeta y registre una nueva a su nombre. Su rostro, su código y su app siguen igual.'},
+          {p:'Un residente cree que alguien vio su código.', s:'Cámbiele el código. No afecta sus otras formas de entrar.'},
+          {p:'Un residente cambió de celular.', s:'Vuelva a vincular su usuario en la aplicación si no le aparece el edificio.'}
         ],
         nota: {tipo:'ojo', titulo:'El error más costoso', texto:'Dejar activo el acceso de alguien que ya se fue. Si ocurre un incidente, la copropiedad tendrá que explicar por qué esa persona todavía podía entrar.'}
       },
@@ -1784,7 +1803,7 @@ const CURSOS = {
       },
       {
         titulo: 'Energía, internet y continuidad',
-        clave: 'Procedimiento de emergencia por escrito y ensayado con todos los turnos.',
+        clave: 'Procedimiento de emergencia por escrito y ensayado con el consejo y el personal del edificio.',
         resumen: 'Qué hacer cuando algo se cae.',
         figura: {clave:'hik-camara', pie:'La batería de respaldo sostiene el sistema mientras vuelve la energía.'},
         pasos: [

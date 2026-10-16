@@ -166,6 +166,7 @@
   .avance .riel{
     flex:1;height:8px;background:var(--linea);border-radius:999px;overflow:hidden;
   }
+  .avance{display:none!important}
   .avance .lleno{height:100%;width:0;background:var(--verde);transition:width .25s}
 
   .modulo{
@@ -1876,7 +1877,7 @@ function construir(curso){
        '<span class="riel"><span class="lleno" id="avanceLleno"></span></span></div>';
   curso.modulos.forEach((m, i) => {
     const hecho = avance.hechos.indexOf(i) > -1;
-    h += '<article class="modulo' + (hecho ? ' hecho' : '') + '" id="tema-' + (i+1) + '">' +
+    h += '<article class="modulo" id="tema-' + (i+1) + '">' +
       '<button class="cabeza" type="button" aria-expanded="false" data-tema="' + i + '">' +
         '<span class="numero">' + (i+1) + '</span>' +
         '<span class="cab-texto"><span class="h3">' + m.titulo + '</span></span>' +
@@ -1910,8 +1911,6 @@ function construir(curso){
         m.problemas.map(x => '<dt>' + x.p + '</dt><dd>' + x.s + '</dd>').join('') +
         '</dl></details>';
     }
-    h += '<div class="fin-tema"><button type="button" class="boton btn-entendido" data-tema="' + i + '">' +
-         (i < curso.modulos.length - 1 ? 'Marcar como visto y continuar' : 'Marcar como visto') + '</button></div>';
     h += '</div></article>';
   });
 
@@ -1969,7 +1968,7 @@ function pintarAvance(curso){
   if(t) t.textContent = n + ' de ' + total + ' temas vistos';
   if(l) l.style.width = (n / total * 100) + '%';
   zona.querySelectorAll('.mapa a').forEach(a => a.classList.toggle('hecho', avance.hechos.indexOf(+a.dataset.ir) > -1));
-  zona.querySelectorAll('.modulo').forEach((art, i) => art.classList.toggle('hecho', avance.hechos.indexOf(i) > -1));
+
   const mini = $('#miniAvance');
   if(mini) mini.style.width = (n / total * 100) + '%';
 }
@@ -2001,12 +2000,8 @@ function activarInteracciones(curso){
 
   /* Abrir el primer tema pendiente */
   let primero = 0;
-  while(avance.hechos.indexOf(primero) > -1 && primero < total - 1) primero++;
   abrirTema(primero, false);
   pintarAvance(curso);
-  if(avance.hechos.length && avance.hechos.length < total){
-    aviso('Continúa en el tema ' + (primero + 1) + '.');
-  }
 
   /* Videoteca */
   zona.querySelectorAll('.mini').forEach(b => b.addEventListener('click', () => verVideo(b.dataset.video)));

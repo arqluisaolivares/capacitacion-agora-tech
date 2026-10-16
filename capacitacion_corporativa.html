@@ -540,6 +540,8 @@
   .visor-caja video{display:block;width:100%;background:#fff}
 
   /* =========== Prueba y certificado =========== */
+  .donde{margin:0 0 14px;padding:10px 14px;border:1px solid var(--linea);border-radius:6px;background:#fff;font-size:16px}
+  .donde span{display:block;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--gris);margin-bottom:2px}
   details.comun{border:1px solid var(--linea);border-radius:8px;background:#fff;margin:0 0 10px;padding:0}
   details.comun summary{cursor:pointer;font-weight:700;color:var(--navy);padding:14px 16px;font-size:17px}
   details.comun p{margin:0;padding:0 16px 16px;color:#333}
@@ -1036,6 +1038,7 @@ const CURSOS = {
     modulos: [
       {
         titulo: 'Active su llave en el celular',
+        donde: 'En la aplicación <b>Salto Homelok</b>. Se descarga gratis en Play Store o App Store.',
         reales: ['r-correo','r-codigo','r-sinllaves','r-llaves'],
         video: 'demo-salto-activar',
         clave: 'Instale <b>Salto Homelok</b> y entre con el mismo correo de la invitación.',
@@ -1058,14 +1061,15 @@ const CURSOS = {
       },
       {
         titulo: 'Abra la puerta con el celular',
+        donde: 'En la aplicación <b>Salto Homelok</b>.',
         reales: ['r-alcance','r-comprobando','r-concedido'],
         video: 'real-salto-app',
-        clave: 'Bluetooth encendido, toque <b>Abrir</b> y deje el celular quieto cerca de la puerta.',
+        clave: 'Toque <b>Abrir</b> en la puerta: verá <b>Comprobando tu acceso</b> y luego <b>Acceso concedido</b>. Ahí ya puede entrar.',
         resumen: 'Es el uso de todos los días. Toma menos de tres segundos.',
         figura: {clave:'salto-lector', pie:'Lectora de pared SALTO. Acerque el celular o el llavero al frente del aparato; el teclado sirve para entrar con código.'},
         pasos: [
           'Antes de salir de casa, verifique que el <b>Bluetooth</b> y la <b>ubicación</b> del celular estén encendidos.',
-          'Al llegar a la puerta, abra la aplicación. Las puertas que todavía están lejos aparecen con la etiqueta <b>Fuera de alcance</b>.',
+          'Al llegar a la puerta, abra <b>Salto Homelok</b>. Las puertas que todavía están lejos aparecen con la etiqueta <b>Fuera de alcance</b>.',
           'Toque el botón <b>Abrir</b> de esa puerta y acerque el celular al lector. La pantalla se pone azul y dice <b>Comprobando tu acceso</b>.',
           'Cuando la pantalla se pone verde y dice <b>Acceso concedido</b>, empuje o hale la puerta: tiene unos segundos antes de que se vuelva a asegurar.'
         ],
@@ -1083,6 +1087,7 @@ const CURSOS = {
       },
       {
         titulo: 'Abra la puerta con la tarjeta o el llavero',
+        donde: 'En la lectora de la puerta. No necesita ninguna aplicación.',
         video: 'real-salto-tarjeta',
         clave: 'Acerque, espere el pitido y la luz verde, y entre. No necesita batería ni internet.',
         resumen: 'La forma más sencilla. No necesita celular, ni internet, ni batería.',
@@ -1099,6 +1104,7 @@ const CURSOS = {
       },
       {
         titulo: 'Abra la puerta con su código PIN',
+        donde: 'En el teclado de la lectora. No necesita ninguna aplicación.',
         video: 'real-salto-pin',
         clave: 'Digite su código tapando el teclado. Si se equivoca, espere y empiece de nuevo.',
         resumen: 'Su salida cuando no tiene a la mano ni el celular ni la tarjeta.',
@@ -1118,13 +1124,14 @@ const CURSOS = {
         ]
       },
       {
-        titulo: 'Atienda el citófono desde el celular',
+        titulo: 'Atienda el citófono desde el celular con XS4 Com',
+        donde: 'En la aplicación <b>XS4 Com</b>. Es otra aplicación, diferente de Salto Homelok, y hay que instalarla aparte.',
         reales: ['r-permisos','r-llamada','r-elegir','r-abierta'],
-        clave: 'Cuando una visita lo llame desde la entrada, la ve en su celular y le abre desde allí.',
-        resumen: 'Con la aplicación XS4 Com, si su edificio la tiene.',
+        clave: 'Para el citófono necesita instalar otra aplicación: <b>XS4 Com</b>. Con ella ve a la visita en su celular y le abre desde allí.',
+        resumen: 'Una aplicación aparte, si su edificio tiene citófono SALTO.',
         pasos: [
-          'La administración lo registra y le llega un correo de <b>XS4 Com</b> con los enlaces para descargar la aplicación. Instálela.',
-          'Entre con el correo al que le llegó la invitación.',
+          'La administración lo registra y le llega un correo de <b>XS4 Com</b> con los enlaces de descarga. Instale la aplicación <b>XS4 Com</b>: es distinta de Salto Homelok y la necesita aunque ya tenga esa.',
+          'Abra <b>XS4 Com</b> y entre con el correo al que le llegó la invitación.',
           'Toque <b>Request</b> y acepte los permisos: <b>micrófono</b> para hablar, <b>notificaciones</b> para que le suene la llamada y <b>cámara</b> si quiere que la visita lo vea.',
           'Cuando alguien lo llame desde la entrada, le aparece una videollamada con el nombre de esa entrada. Contéstela para ver y hablar con la persona.',
           'Para abrir, toque el botón azul <b>Open Door</b>, elija la entrada y toque <b>Open</b>. Un chulo verde le confirma que la puerta se abrió.',
@@ -1144,17 +1151,18 @@ const CURSOS = {
       {
         titulo: 'Gestión de visitantes',
         reales: ['s-crear','s-horario'],
+        donde: 'Accesos de visitante: en la aplicación <b>Salto Homelok</b>, menú <b>Usuarios</b> (si usted es gestor de su apartamento). Si no lo es, los crea la administración. Atender a la visita en la entrada: en la aplicación <b>XS4 Com</b>.',
         video: 'demo-salto-visitante',
         clave: 'Cada visitante entra con su propio acceso, con fecha de fin. Así no tiene que prestar su llave.',
         resumen: 'Domicilios, visitas de un día, huéspedes y trabajos en su apartamento.',
         figura: {clave:'salto-app', pie:'Los accesos de visitante se crean desde la aplicación o los crea la administración.'},
         pasos: [
-          '<b>Domicilios y visitas cortas:</b> baje a recibirlos a la entrada y ábrales usted mismo con su credencial. Si tiene la aplicación del citófono, véalos en la videollamada y ábrales con <b>Open Door</b>.',
-          '<b>Visita de uno o varios días</b> (familiares, huéspedes): si usted es gestor de su apartamento, en la aplicación entre a <b>Usuarios</b>, toque <b>+</b> y escriba el nombre y el correo del visitante.',
+          '<b>Domicilios y visitas cortas:</b> baje a recibirlos a la entrada y ábrales usted mismo con su credencial. Si tiene la aplicación del citófono (<b>XS4 Com</b>), véalos en la videollamada y ábrales con <b>Open Door</b>.',
+          '<b>Visita de uno o varios días</b> (familiares, huéspedes): si usted es gestor de su apartamento, en <b>Salto Homelok</b> entre a <b>Usuarios</b>, toque <b>+</b> y escriba el nombre y el correo del visitante.',
           'Ponga la <b>fecha de inicio y de fin</b> y elija solo las puertas que necesita. Asígnele la llave en la app: le llega por correo y deja de abrir sola a la medianoche del último día.',
           '<b>Si no tiene ese permiso:</b> pida a la administración un acceso temporal a nombre del visitante, con su nombre, su correo y las fechas.',
           '<b>Trabajos en su apartamento</b> (plomería, pintura, mudanza): pida o cree un acceso solo para los días y horas del trabajo, y avise a la administración con anticipación.',
-          'Si la visita se va antes de lo previsto, cancele su llave desde la aplicación o avise a la administración.'
+          'Si la visita se va antes de lo previsto, cancele su llave desde <b>Salto Homelok</b> o avise a la administración.'
         ],
         nota: {tipo:'ojo', titulo:'Una recomendación', texto:'Le recomendamos no prestar su llave ni dejar la puerta trabada para que entre una visita. Un acceso a nombre del visitante es igual de fácil y su entrada queda registrada a nombre de él, no al suyo.'},
         problemas: [
@@ -1164,13 +1172,14 @@ const CURSOS = {
       },
       {
         titulo: 'Acceso para personas que apoyan en su casa, visitantes o familia',
+        donde: 'En la aplicación <b>Salto Homelok</b>, menú <b>Usuarios</b> (si usted es gestor de su apartamento). Si no lo es, los crea la administración.',
         reales: ['s-usuarios','s-crear','s-horario','s-tipos'],
         video: 'demo-salto-compartir',
         clave: 'Nunca preste su llave: cada persona que entra seguido debe tener la suya, con su horario.',
         resumen: 'Para quienes entran a su apartamento con frecuencia.',
         figura: {clave:'salto-app', pie:'Si su edificio lo habilitó, usted mismo crea accesos desde la aplicación, en el menú Usuarios.'},
         pasos: [
-          '<b>Si la administración lo nombró gestor de su apartamento:</b> en la aplicación entre a <b>Usuarios</b>, toque <b>+</b>, escriba el nombre y el correo de la persona, elija sus puertas, días y horario, y asígnele la llave en la app. Le llega por correo.',
+          '<b>Si la administración lo nombró gestor de su apartamento:</b> en <b>Salto Homelok</b> entre a <b>Usuarios</b>, toque <b>+</b>, escriba el nombre y el correo de la persona, elija sus puertas, días y horario, y asígnele la llave en la app. Le llega por correo.',
           'Al crearla puede ponerle <b>fecha de vencimiento</b>: la llave deja de servir sola a la medianoche de ese día.',
           'Si la persona sale de vacaciones, use <b>Bloquear</b>; al volver, <b>Desbloquear</b> y recupera el mismo acceso. Si la persona ya no va a venir, cancele su llave.',
           '<b>Si no tiene ese permiso:</b> pida a la administración el acceso con horario para quien le apoya en casa, un cuidador o un terapeuta. Los códigos PIN solo los asigna la administración.'
@@ -1179,6 +1188,7 @@ const CURSOS = {
       },
       {
         titulo: 'Si pierde el celular, la tarjeta o el llavero',
+        donde: 'Avise a la administración. Ella bloquea la llave desde la plataforma web de <b>Salto Homelok</b>, desde el computador.',
         video: 'demo-salto-perdida',
         clave: 'Avise el mismo día. Se cancela solo esa llave y nadie cambia cerraduras.',
         resumen: 'Lo único urgente es avisar. El bloqueo es inmediato.',
@@ -1195,6 +1205,7 @@ const CURSOS = {
       {
         titulo: 'Entienda las luces y los pitidos',
         video: 'demo-salto-luces',
+        donde: 'En la lectora o en la cerradura de la puerta.',
         clave: 'Verde: pase. Roja: sin permiso. Varios pitidos: pila baja, avise.',
         resumen: 'El lector le está diciendo algo. Esto es lo que significa.',
         figura: {clave:'salto-lector', pie:'La luz de color aparece en el borde superior de la lectora, o en la manija cuando la puerta tiene cerradura electrónica.'},
@@ -1208,6 +1219,7 @@ const CURSOS = {
       },
       {
         titulo: 'Lo que le dice la aplicación',
+        donde: 'En la aplicación <b>Salto Homelok</b>.',
         reales: ['r-sinllaves','r-alcance','r-concedido'],
         clave: 'Casi todos los mensajes de error se resuelven acercándose o hablando con la administración.',
         resumen: 'Los avisos más comunes y qué hacer con cada uno.',
@@ -1249,7 +1261,7 @@ const CURSOS = {
       {q:'¿Puedo entrar si se va la luz?', r:'Sí. Las cerraduras funcionan con sus propias pilas, así que siguen abriendo aunque no haya energía en el edificio.'},
       {q:'¿Qué hago si pierdo el llavero o la tarjeta?', r:'Avise a la administración ese mismo día, aunque sea fin de semana. Lo bloquean de inmediato y nadie más podrá usarlo.'},
       {q:'Acerco el celular y no pasa nada. ¿Qué reviso?', r:'Que el Bluetooth y la ubicación estén encendidos y que la aplicación esté abierta. El ahorro de batería a veces la cierra sola.'},
-      {q:'Llega un domicilio y no puedo bajar. ¿Qué hago?', r:'Acuerde la entrega para cuando pueda recibirla. Si tiene la aplicación del citófono, puede ver a la persona en la videollamada y abrirle desde el celular. Le recomendamos no prestar su llave ni dejar la puerta trabada.'},
+      {q:'Llega un domicilio y no puedo bajar. ¿Qué hago?', r:'Acuerde la entrega para cuando pueda recibirla. Si tiene la aplicación del citófono (XS4 Com), puede ver a la persona en la videollamada y abrirle desde el celular. Le recomendamos no prestar su llave ni dejar la puerta trabada.'},
       {q:'Salí sin celular y sin tarjeta. ¿Puedo entrar?', r:'Sí, con su código PIN en el teclado de la lectora, si se lo asignaron. Por eso es bueno tener más de una forma de entrar.'},
       {q:'La aplicación dice "Fuera de alcance". ¿Qué significa?', r:'Que el celular todavía no detecta esa puerta. Acérquese un poco y espere un momento.'},
       {q:'Una persona me apoya en casa entre semana. ¿Cómo entra?', r:'Pida un acceso a su nombre, con sus días y su horario. Así no tiene que prestarle su llave y el acceso se puede bloquear cuando usted lo necesite.'},
@@ -1267,6 +1279,7 @@ const CURSOS = {
       {
         titulo: 'Entre a la plataforma de administración',
         clave: 'Una cuenta por persona. Nunca se comparte ni se hereda la contraseña.',
+        donde: 'En la plataforma web de <b>Salto Homelok</b>, desde el computador: <b>homelok.saltosystems.com</b>',
         resumen: 'Es una página web. Funciona desde cualquier computador con internet.',
         reales: ['p-inicio'],
         figura: {clave:'salto-portal', pie:'Pantalla principal: a la izquierda el menú, en el centro la lista de usuarios y puertas.'},
@@ -1280,6 +1293,7 @@ const CURSOS = {
       },
       {
         titulo: 'Dé de alta a un residente nuevo',
+        donde: 'En la plataforma web de <b>Salto Homelok</b>, desde el computador, menú <b>Usuarios</b>.',
         reales: ['p-crear','p-acceso','p-llave','p-codificar','p-pin','p-ficha'],
         video: 'demo-salto-alta',
         clave: 'Autorización de datos, usuario, solo sus puertas, dos formas de entrar, invitación.',
@@ -1303,20 +1317,22 @@ const CURSOS = {
       },
       {
         titulo: 'Registre a los residentes en el citófono',
+        donde: 'En la plataforma web de <b>XS4 Com</b>. Es distinta de la de Salto Homelok.',
         reales: ['p-residente','p-enviada'],
         clave: 'Cada residente queda en el directorio de la entrada cuando entra por primera vez a XS4 Com.',
         resumen: 'Para los edificios con citófono en la aplicación XS4 Com.',
         pasos: [
-          'En la plataforma de XS4 Com toque <b>Add Resident</b>.',
+          'Entre a la plataforma web de <b>XS4 Com</b> y toque <b>Add Resident</b>.',
           'En <b>Resident Type</b> elija <b>Residential</b> y en <b>Associate Unit and Floor</b> elija su apartamento y piso.',
           'Escriba el correo, el nombre y el apellido, y toque <b>ADD</b>.',
-          'Al residente le llega un correo con los enlaces para descargar la aplicación.',
+          'Al residente le llega un correo con los enlaces para descargar la aplicación <b>XS4 Com</b>. Recuérdele que es otra aplicación, aparte de Salto Homelok.',
           'El residente aparece en el directorio de la entrada solo después de iniciar sesión en la aplicación. Si alguien no aparece, confirme que ya entró.'
         ],
         nota: {tipo:'ojo', titulo:'El mismo correo', texto:'Use el mismo correo con el que el residente está registrado para su llave. Así evita confusiones y correos que no le llegan.'}
       },
       {
         titulo: 'Quite el acceso de quien se va',
+        donde: 'En la plataforma web de <b>Salto Homelok</b>, desde el computador, menú <b>Usuarios</b>. Si el residente tenía citófono, retírelo también en la plataforma de <b>XS4 Com</b>.',
         reales: ['p-ficha'],
         video: 'demo-salto-baja',
         clave: 'El mismo día de la entrega: desactivar, recuperar llaveros y revisar temporales.',
@@ -1334,6 +1350,7 @@ const CURSOS = {
       {
         titulo: 'Gestión de visitantes y accesos temporales',
         video: 'demo-salto-visitante',
+        donde: 'En la plataforma web de <b>Salto Homelok</b>, desde el computador, menús <b>Usuarios</b> y <b>Accesos</b>.',
         reales: ['p-vigencia','p-grupo'],
         clave: 'Todo acceso de visitante lleva nombre propio, fecha de fin y puertas limitadas.',
         resumen: 'Visitas de varios días, obra, aseo, mudanzas y contratistas.',
@@ -1351,6 +1368,7 @@ const CURSOS = {
       },
       {
         titulo: 'Consulte el registro de entradas',
+        donde: 'En la plataforma web de <b>Salto Homelok</b>, desde el computador, menú <b>Actividad</b>.',
         clave: 'El registro es información personal: se entrega solo a quien tiene facultad.',
         resumen: 'Quién entró, por cuál puerta y a qué hora.',
         reales: ['p-actividad'],
@@ -1365,6 +1383,7 @@ const CURSOS = {
       },
       {
         titulo: 'Pilas, mantenimiento y suscripción',
+        donde: 'En la plataforma web de <b>Salto Homelok</b>, desde el computador, menú <b>Salpicadero</b>.',
         clave: 'El aviso de pila baja llega con semanas de margen: atiéndalo apenas aparezca.',
         resumen: 'Lo que mantiene el sistema funcionando todo el año.',
         reales: ['p-estado'],
@@ -1399,9 +1418,9 @@ const CURSOS = {
         figura: {clave:'salto-portal', pie:'Antes de llamar, tenga a la mano el nombre de la puerta y la hora del evento.'},
         pasos: [
           '<b>Lo resuelve usted:</b> crear y quitar usuarios, reenviar invitaciones, generar accesos temporales, consultar registros.',
-          '<b>Nos llama a nosotros:</b> una puerta que no abre para nadie, un lector sin luz, una cerradura que no asegura, cambio de pilas, o si no puede entrar a la plataforma.',
+          '<b>Nos escribe a nosotros:</b> una puerta que no abre para nadie, un lector sin luz, una cerradura que no asegura, cambio de pilas, o si no puede entrar a la plataforma.',
           'Al reportar, indique: edificio, puerta exacta, qué pasa, desde cuándo y si afecta a una persona o a todos.',
-          'Deje siempre el reporte por escrito además de la llamada, para que quede registro del caso.'
+          'Escríbanos a <b>soporte@agoratech.com.co</b>, para que quede registro del caso.'
         ]
       }
     ],
@@ -1723,9 +1742,9 @@ const CURSOS = {
         figura: {clave:'hik-portal', pie:'Tenga a la mano la puerta o cámara afectada y la hora del evento.'},
         pasos: [
           '<b>Lo resuelve usted:</b> registrar y retirar personas, crear accesos temporales, consultar registros y grabaciones, atender dudas de residentes.',
-          '<b>Nos llama a nosotros:</b> puerta que no abre para nadie, equipo apagado, cámara sin imagen, grabación que no aparece, batería de respaldo en alarma o si no puede entrar a la plataforma.',
+          '<b>Nos escribe a nosotros:</b> puerta que no abre para nadie, equipo apagado, cámara sin imagen, grabación que no aparece, batería de respaldo en alarma o si no puede entrar a la plataforma.',
           'Al reportar indique: edificio, equipo o puerta exacta, qué ocurre, desde cuándo y si afecta a una persona o a todos.',
-          'Deje siempre el reporte por escrito además de la llamada.'
+          'Escríbanos a <b>soporte@agoratech.com.co</b>, para que quede registro del caso.'
         ]
       }
     ],
@@ -1884,6 +1903,7 @@ function construir(curso){
         '<span class="estado-tema" aria-hidden="true"></span>' +
       '</button>' +
       '<div class="cuerpo" hidden>';
+    if(m.donde) h += '<p class="donde"><span>Dónde se hace</span>' + m.donde + '</p>';
     if(m.clave) h += '<div class="idea"><span>Punto clave</span>' + m.clave + '</div>';
     const vs = listaVideos(m);
     vs.forEach((v, k) => {
@@ -1932,11 +1952,11 @@ function construir(curso){
        '</section>';
 
   h += '<section class="soporte"><h2>Si algo no funciona</h2>' +
-    '<p>El primer contacto siempre es la administración de su edificio. Si el problema es del sistema, la administración nos reporta a nosotros.</p>' +
-    '<div class="datos">' +
-      '<div class="dato"><b>Administración del edificio</b><span>' + (CONTACTO.telefono || 'Escriba aquí el teléfono de su administración') + '</span></div>' +
-      '<div class="dato"><b>Soporte técnico Ágora Tech</b><span>' + (CONTACTO.soporte || 'Escriba aquí el teléfono y el correo de soporte') + '</span></div>' +
-    '</div></section>';
+    (estado.rol === 'admin'
+      ? '<p>Escríbanos a nuestro correo de soporte. Cuéntenos el edificio, la puerta, qué pasa y desde cuándo.</p>' +
+        '<div class="datos"><div class="dato"><b>Soporte Ágora Tech</b><span><a href="mailto:soporte@agoratech.com.co" style="color:#fff">soporte@agoratech.com.co</a></span></div></div>'
+      : '<p>Comuníquese primero con la administración de su edificio. Si el problema es del sistema, la administración se encarga de reportarlo a Ágora Tech.</p>') +
+    '</section>';
 
   h += '<div class="acciones">' +
     '<button type="button" class="boton" onclick="imprimirGuia()">Imprimir esta guía</button>' +
